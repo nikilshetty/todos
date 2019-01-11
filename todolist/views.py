@@ -6,24 +6,24 @@ from .models import TodoList, Category
 import datetime
 # Create your views here.
 
-def index(request): #the index view
+def index(request):
 	todos = TodoList.objects.all() 
-	categories = Category.objects.all() #getting all categories with object manager
-	if request.method == "POST": #checking if the request method is a POST
-		if "taskAdd" in request.POST: #checking if there is a request to add a todo
+	categories = Category.objects.all() 
+	if request.method == "POST": 
+		if "taskAdd" in request.POST:
 			title = request.POST["description"]
 			comment = request.POST["comment"]
-			date = str(request.POST["date"]) #date
-			category = request.POST["category_select"] #category
-			content = title + " -- " + date + " " + category #content
+			date = str(request.POST["date"])
+			category = request.POST["category_select"]
+			content = title + " -- " + date + " " + category
 			Todo = TodoList(title=title,comment=comment, content=content, due_date=date, category=Category.objects.get(name=category))
-			Todo.save() #saving the todo 
-			return redirect("/") #reloading the page
+			Todo.save()
+			return redirect("/")
 		
-		if "taskDelete" in request.POST: #checking if there is a request to delete a todo
-			checkedlist = request.POST["checkedbox"] #checked todos to be deleted
+		if "taskDelete" in request.POST:
+			checkedlist = request.POST["checkedbox"]
 			for todo_id in checkedlist:
-				todo = TodoList.objects.get(id=int(todo_id)) #getting todo id
-				todo.delete() #deleting todo
+				todo = TodoList.objects.get(id=int(todo_id))
+				todo.delete()
 
 	return render(request, "index.html", {"todos": todos, "categories":categories})

@@ -352,3 +352,33 @@ footer a {
     outline: none;
     padding: 0 100px;
 }
+.split {
+          height: 100%;
+          width: 50%;
+          z-index: 1;
+          top: 0;
+          overflow-x: hidden;
+          padding-top: 50px;
+        }
+.left_title {
+  margin-left: 21px;
+}
+.right_titlle{
+  margin-left: 15px;
+}
+#left {
+          left: 0;
+          height: 60px;
+          border-top: 1px solid #e5e5e5;
+          position: relative;
+          overflow: hidden;
+        }
+
+
+#right {
+          right: 0;
+          height: 60px;
+          border-top: 1px solid #e5e5e5;
+          position: relative;
+          overflow: hidden;
+        }
