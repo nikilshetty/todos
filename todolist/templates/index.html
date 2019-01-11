@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>TodoApp - Django</title>
+  <title>FINAL</title>
   {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,6 +20,10 @@
                 <div class="inputContainer">
                     <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" required>
                     <label for="description">Description</label>
+                </div>
+                 <div class="inputContainer">
+                    <input type="text" id="comment" class="taskName" placeholder="write comment" name="comment" required>
+                    <label for="comments">Comment</label>
                 </div>
               <div class="inputContainer half last">
                     <i class="fa fa-caret-down selectArrow"></i>
@@ -46,13 +50,25 @@
                 <li class="taskItem">
                     <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">
                     <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
+                    <label for="{{ todo.id }}"><span class="complete-">{{ todo.comment }}</span></label>
                     <span class="category-{{ todo.category }}">{{ todo.category }}</span>
                     <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.created }} - {{ todo.due_date }}</strong>
                 </li>
-            {% endfor %}
-            
-            
+            {% endfor %}           
             </ul>
+
+            <ul  class="taskList">
+            {% for todo in todos %} <!-- django template lang - for loop -->
+                <li class="taskItem">
+                    <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">
+                    <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
+                     <label for="{{ todo.id }}"><span class="complete-">{{ todo.comment }}</span></label>
+                    <span class="category-{{ todo.category }}">{{ todo.category }}</span>
+                    <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.created }} - {{ todo.due_date }}</strong>
+                </li>
+            {% endfor %}           
+            </ul>
+
             </form>
             </div>
  </div>

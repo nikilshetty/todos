@@ -7,15 +7,16 @@ import datetime
 # Create your views here.
 
 def index(request): #the index view
-	todos = TodoList.objects.all() #quering all todos with the object manager
+	todos = TodoList.objects.all() 
 	categories = Category.objects.all() #getting all categories with object manager
 	if request.method == "POST": #checking if the request method is a POST
 		if "taskAdd" in request.POST: #checking if there is a request to add a todo
-			title = request.POST["description"] #title
+			title = request.POST["description"]
+			comment = request.POST["comment"]
 			date = str(request.POST["date"]) #date
 			category = request.POST["category_select"] #category
 			content = title + " -- " + date + " " + category #content
-			Todo = TodoList(title=title, content=content, due_date=date, category=Category.objects.get(name=category))
+			Todo = TodoList(title=title,comment=comment, content=content, due_date=date, category=Category.objects.get(name=category))
 			Todo.save() #saving the todo 
 			return redirect("/") #reloading the page
 		

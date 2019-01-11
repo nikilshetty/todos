@@ -17,6 +17,7 @@ class Category(models.Model):
 
 class TodoList(models.Model): 
 	title = models.CharField(max_length=250)
+	comment = models.TextField(max_length=150)
 	content = models.TextField(blank=True)
 	created = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) 
 	due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) 
